@@ -3,6 +3,7 @@ package daysteps
 import (
 	"errors"
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -20,23 +21,23 @@ const (
 func parsePackage(data string) (int, time.Duration, error) {
 	parts := strings.Split(data, ",")
 	if len(parts) != 2 {
-		return 0, 0, errors.New("неверный формат данных")
+		return 0, 0, errors.New("invalid data format")
 	}
 
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
-		return 0, 0, fmt.Errorf("ошибка парсинга шагов: %w", err)
+		return 0, 0, fmt.Errorf("parsing steps: %w", err)
 	}
 	if steps <= 0 {
-		return 0, 0, errors.New("количество шагов должно быть больше нуля")
+		return 0, 0, errors.New("steps must be greater than zero")
 	}
 
 	duration, err := time.ParseDuration(parts[1])
 	if err != nil {
-		return 0, 0, fmt.Errorf("ошибка парсинга времени: %w", err)
+		return 0, 0, fmt.Errorf("parsing duration: %w", err)
 	}
 	if duration <= 0 {
-		return 0, 0, errors.New("продолжительность должна быть больше нуля")
+		return 0, 0, errors.New("duration must be greater than zero")
 	}
 
 	return steps, duration, nil
@@ -45,6 +46,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 func DayActionInfo(data string, weight, height float64) string {
 	steps, duration, err := parsePackage(data)
 	if err != nil {
+		log.Printf("failed to parse day activity data %q: %v", data, err)
 		return ""
 	}
 
@@ -52,6 +54,7 @@ func DayActionInfo(data string, weight, height float64) string {
 
 	calories, err := spentcalories.WalkingSpentCalories(steps, weight, height, duration)
 	if err != nil {
+		log.Printf("failed to calculate spent calories: %v", err)
 		return ""
 	}
 

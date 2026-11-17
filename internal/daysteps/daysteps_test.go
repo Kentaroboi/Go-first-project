@@ -285,7 +285,7 @@ func (suite *DayStepsTestSuite) TestDayActionInfo() {
 			weight:        75.0,
 			height:        1.75,
 			want:          "",
-			wantLogOutput: false,
+			wantLogOutput: true,
 		},
 		{
 			name:          "пустая строка",
@@ -293,7 +293,7 @@ func (suite *DayStepsTestSuite) TestDayActionInfo() {
 			weight:        75.0,
 			height:        1.75,
 			want:          "",
-			wantLogOutput: false,
+			wantLogOutput: true,
 		},
 		{
 			name:          "отрицательные шаги",
@@ -301,7 +301,7 @@ func (suite *DayStepsTestSuite) TestDayActionInfo() {
 			weight:        75.0,
 			height:        1.75,
 			want:          "",
-			wantLogOutput: false,
+			wantLogOutput: true,
 		},
 		{
 			name:          "ноль шагов",
@@ -309,7 +309,7 @@ func (suite *DayStepsTestSuite) TestDayActionInfo() {
 			weight:        75.0,
 			height:        1.75,
 			want:          "",
-			wantLogOutput: false,
+			wantLogOutput: true,
 		},
 		{
 			name:          "отрицательная продолжительность",
@@ -317,7 +317,7 @@ func (suite *DayStepsTestSuite) TestDayActionInfo() {
 			weight:        75.0,
 			height:        1.75,
 			want:          "",
-			wantLogOutput: false,
+			wantLogOutput: true,
 		},
 		{
 			name:          "нулевая продолжительность",
@@ -325,7 +325,7 @@ func (suite *DayStepsTestSuite) TestDayActionInfo() {
 			weight:        75.0,
 			height:        1.75,
 			want:          "",
-			wantLogOutput: false,
+			wantLogOutput: true,
 		},
 	}
 
